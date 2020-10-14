@@ -1,0 +1,18 @@
+html ,body{
+	margin: 0;
+	padding: 0;
+}
+#header{
+	height: 300px;
+	width: 100%;
+	background-image: url(../img/59f17aeecae31_WPS图片.jpg);
+}
+#contentCenter{
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+#testEditor{
+	border: 2px solid blueviolet;
+	border-radius: 25px;
+}

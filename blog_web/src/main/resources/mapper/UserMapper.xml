@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lkz.blog.web.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.lkz.blog.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="user_count" property="userCount" jdbcType="BIGINT" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lkz.blog.pojo.UserWithBLOBs" extends="BaseResultMap" >
+    <result column="declaration" property="declaration" jdbcType="LONGVARCHAR" />
+    <result column="user_head" property="userHead" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <resultMap id="UserAndRolesAndAuth" type="com.lkz.blog.pojo.User">
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="user_count" property="userCount" jdbcType="BIGINT" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+    <result column="declaration" property="declaration" jdbcType="LONGVARCHAR" />
+    <result column="user_head" property="userHead" jdbcType="LONGVARCHAR" />
+    <collection property="authenticationList" ofType="com.lkz.blog.pojo.Authentication">
+      <id column="authentication_id" property="authenticationId" jdbcType="INTEGER" />
+      <result column="user_id" property="userId" jdbcType="BIGINT" />
+      <result column="authentications_id" property="authenticationsId" jdbcType="INTEGER" />
+      <result column="authentication_content" property="authenticationContent" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="roles" ofType="com.lkz.blog.pojo.Role">
+      <id column="role_id" property="roleId" jdbcType="INTEGER" />
+      <result column="role_content" property="roleContent" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    user_id, nick_name, user_count, sex, phone, email, role, register_time, user_status, 
+    is_delete, login_time, login_ip, remake
+  </sql>
+  <sql id="Blob_Column_List" >
+    declaration, user_head
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from blog_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lkz.blog.pojo.UserWithBLOBs" >
+    insert into blog_user (user_id, nick_name, user_count, 
+      sex, phone, email, role, 
+      register_time, user_status, is_delete, 
+      login_time, login_ip, remake, 
+      declaration, user_head)
+    values (#{userId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{userCount,jdbcType=BIGINT}, 
+      #{sex,jdbcType=BIT}, #{phone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
+      #{registerTime,jdbcType=TIMESTAMP}, #{userStatus,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, 
+      #{loginTime,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}, #{remake,jdbcType=VARCHAR}, 
+      #{declaration,jdbcType=LONGVARCHAR}, #{userHead,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lkz.blog.pojo.UserWithBLOBs" >
+    insert into blog_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="userCount != null" >
+        user_count,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+      <if test="declaration != null" >
+        declaration,
+      </if>
+      <if test="userHead != null" >
+        user_head,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null" >
+        #{userCount,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="declaration != null" >
+        #{declaration,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lkz.blog.pojo.UserWithBLOBs" >
+    update blog_user
+    <set >
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null" >
+        user_count = #{userCount,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="declaration != null" >
+        declaration = #{declaration,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userHead != null" >
+        user_head = #{userHead,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lkz.blog.pojo.UserWithBLOBs" >
+    update blog_user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      user_count = #{userCount,jdbcType=BIGINT},
+      sex = #{sex,jdbcType=BIT},
+      phone = #{phone,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR},
+      declaration = #{declaration,jdbcType=LONGVARCHAR},
+      user_head = #{userHead,jdbcType=LONGVARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lkz.blog.pojo.User" >
+    update blog_user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      user_count = #{userCount,jdbcType=BIGINT},
+      sex = #{sex,jdbcType=BIT},
+      phone = #{phone,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectUser" resultMap="UserAndRolesAndAuth" parameterType="com.lkz.blog.pojo.User">
+      select
+      u.user_id, u.nick_name, u.user_count, u.user_head, u.sex, u.phone, u.email, u.role, u.register_time, u.user_status,
+      u.is_delete, u.login_time, u.login_ip, u.remake
+      <if test="isNeedAuth==true">
+        ,a.authentication_id, a.user_id, a.authentications_id, a.authentication_content
+      </if>
+      <if test="isNeedRoles==true">
+        ,r.role_id, r.role_content
+      </if>
+      from
+      blog_user as u
+
+      <if test="isNeedAuth==true">
+        left join blog_authentication as a
+        on u.user_id  = a.user_id
+        left join blog_authentications as s
+        on a.authentications_id = s.authentications_id
+      </if>
+      <if test="isNeedRoles==true">
+        left join blog_user_roles as ur
+        on u.user_id = ur.user_id
+        left join blog_role as r
+        on ur.role_id = r.role_id
+      </if>
+
+      <where>
+        <if test="userId!=null and userId!=0">
+         u.user_id = #{userId}
+        </if>
+        <if test="nickName!=null and nickName!=''">
+         and u.nick_name =  #{nickName}
+        </if>
+        <if test="userCount!=null and userCount!=0">
+         and u.user_count =  #{userCount}
+        </if>
+      </where>
+  </select>
+
+  <insert id="insertUser" parameterType="com.lkz.blog.pojo.User">
+    insert into blog_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        user_id,
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="userCount != null" >
+        user_count,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+      <if test="declaration != null" >
+        declaration,
+      </if>
+      <if test="userHead != null" >
+        user_head,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+        default ,
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null" >
+        #{userCount,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="declaration != null" >
+        #{declaration,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <select id="selectCountByNickName" parameterType="String" resultType="int">
+    select count(nick_name) as count from blog_user where nick_name = #{nickName};
+  </select>
+
+  <select id="selectCountByEmail" parameterType="string" resultType="int">
+    select count(email) from blog_user where email=#{userEmail};
+  </select>
+</mapper>

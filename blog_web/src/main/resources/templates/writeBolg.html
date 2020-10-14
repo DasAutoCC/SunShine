@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="editor/css/editormd.css" />
+	</head>
+	<body>
+	<span>当前进行更新的文章id：</span>  <a id="currentArticleId" th:text="${articleId}" ></a>
+		<div class="btns">
+			<button id="testShow">测试显示方法</button>
+			<button id="testHtml">测试html</button>
+		</div>
+		博客标题：<textarea id="blogHeader" th:text="${articleHeader}"></textarea>
+		<div id="test-editor">
+		    <textarea style="display:none;" th:text="${articleContent}">### 关于 Editor.md
+				**Editor.md** 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
+			</textarea>
+		</div>
+		
+		预览文字：<textarea id="preview" th:text="${articlePreview}"></textarea><br>
+		是否公开
+		<select th:value="${ispu}">
+			<option value="1" th:selected="${ispu}==1">公开</option>
+			<option value="0" th:selected="${ispu}==0">私密</option>
+		</select><br />
+
+		<span>当前文章公开状态：</span> <span th:text="${isPublic}"></span> <br />
+		<button id="submit">提交</button>
+		<script src="lib/js/jquery.main.js"></script>
+		<script src="editor/editormd.min.js"></script>
+		<script src="js/upd-article.js"></script>
+		<script>
+			$("#testShow").click(function(){
+				alert(editor.getMarkdown());
+			})
+			$("#testHtml").click(function(){
+				editor.previewing()
+			})
+		</script>
+	</body>
+</html>

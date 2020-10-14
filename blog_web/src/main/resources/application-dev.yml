@@ -1,0 +1,62 @@
+server:
+  port: 80
+  servlet:
+    session:
+      cookie:
+        max-age: 3600
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.198.181
+    port: 6379
+  thymeleaf:
+    cache: false
+  mail:
+    host: smtp.qq.com
+    username: your email address
+    password: your password
+    protocol: smtp
+    default-encoding: utf-8
+    port: 587
+    smtp:
+      ssl:
+        enable: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lkz.blog.pojo
+logging:
+#  config: classpath:slf4j-logback-dev.xml
+  level:
+        root: debug
+#    com.lkz.blog.web.mapper: debug
+#关于本网站的自定义配置
+blog:
+  config:
+    domain-names:
+      - localhost
+      - www.likunzong.com
+      - likunzong.com
+    repeat-submission-addresses:
+      - /blog/addArticle
+      - /blog/upd-article
+      - /send-verif-code
+    redis-remember: false
+    customizer-login-page-and-resp: true
+    default-girl-head-u-r-l:
+      - /imageService/default_user_header/girl/default_Girl_1.jpg
+      - /imageService/default_user_header/girl/default_Girl_2.jpg
+      - /imageService/default_user_header/girl/default_Girl_3.jpg
+    default-man-head-u-r-l:
+      - /imageService/default_user_header/man/default_man_1.jpg
+      - /imageService/default_user_header/man/default_man_2.jpg
+      - /imageService/default_user_header/man/default_man_3.jpg
+      - /imageService/default_user_header/man/default_man_4.jpg
+      - /imageService/default_user_header/man/default_man_5.jpg
+      - /imageService/default_user_header/man/default_man_6.jpg
+      - /imageService/default_user_header/man/default_man_7.jpg
+      - /imageService/default_user_header/man/default_man_8.jpg
+      - /imageService/default_user_header/man/default_man_9.jpg

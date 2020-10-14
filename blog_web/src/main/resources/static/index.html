@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.min.css" />
+		<!-- 引入editor.md的css样式 -->
+		<link rel="stylesheet" href="editor/css/editormd.min.css" />
+		<script src="lib/js/jquery.main.js"></script>
+		<!-- 引入初始化脚本-->
+		<script src="js/init-index.min.js"></script>
+		<!-- 图标-->
+		<link rel="icon" href="img/icon.ico" type="images/x-ico" />
+		<title>盛世繁花</title>
+		<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?07d965389cf317cd74b972fdb42ce6d2";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+	</head>
+	<body>
+		<!--进入博客主页之前的遮罩图层div-->
+		<div class="index">
+			<div class="whiteBackGround"></div>
+			<div class="indexDiv" id="indexDiv">
+				<img id="indexDivImage" src="img/08_eagle_b_resized-min.jpg" />
+			</div>
+			<span id="indexDivSpan" class="fuck">23:15&nbsp;PM</span>
+			<span id="indexDivSpan1" class="fuck">不积跬步无以至千里</span>
+			<span id="indexDivSpan2" class="fuck">海内存知己,天涯若比邻</span>
+			<div id="intoButton"><button id="intoButtonIntence">进入主页&gt;</button> </div>
+		</div>
+		<!--/进入博客主页之前的遮罩图层div-->
+
+		<!--主页头部被fixed div 遮挡的那个div-->
+		<div class="hiddenHeader">
+			<img class="fixedImage" src="img/09_deer_resized_WPS图片.jpg" />
+		</div>
+		<!--/主页头部被fixed div 遮挡的那个div-->
+
+		<!--主页遮挡头部的div fixed布局，带有动画效果-->
+		<div class="test" style="background-image: url(img/04_horse_b_resized_WPS图片.jpg);">
+			<div id="innerTest">
+				<div id="loginArea">
+					<div class="loginAndRegDiv" id="loginDiv">
+						<a class="testASpan" href="/login">登录</a>
+					</div>
+					<div class="loginAndRegDiv" id="regDiv">
+						<a class="testASpan" href="/reg.html">注册</a>
+					</div>
+				</div>
+				<span id="text">满月照人间</span><br />
+				<span id="HeaderText">-盛世繁花-</span>
+			</div>
+		</div>
+		<!--/主页遮挡头部的div fixed布局，带有动画效果-->
+
+
+		<!--导航栏位置，但是没想好要放啥-->
+		<div class="navigationBar">
+			<div id="userContentOnNaviBar">
+				<div id="userHeaderOnNaviBar"> <img id="userHeaderInstanceOnNaviBar" src="img/头像.jpg" /> </div>
+				<div id="userNameAndDeclarationArea">
+					<div id="userNameAndDeclarationArea-name">盛世繁花</div>
+					<div id="userNameAndDeclarationArea-Declaration">你对生活付出什么，生活就给你什么样的回馈</div>
+				</div>
+			</div>
+
+		</div>
+		<!--/导航栏位置，但是没想好要放啥-->
+
+
+		<!-- 左侧fixed布局div，始终悬浮在左下方-->
+		<div class="left">
+			<button id="gasga" style="transition: all 0.8s;">展开博客归档</button>
+		</div>
+		<!-- /左侧fixed布局div，始终悬浮在左下方-->
+
+
+
+		<!-- 内容区域-->
+		<div class="content" style="display: none;">
+			<!-- 内容区域中的左侧栏目-->
+			<div class="innerContentLeft innerContentLeftFrames">
+				
+			</div>
+			<!-- /内容区域中的左侧栏目-->
+
+			<!-- 内容区域中的右侧栏目-->
+			<div class="innerContentRight innerContentRightFrames">
+				<div id="contentArea">
+					<div id="listBlog">
+						<div class="contentList blogList1"><div>loading....</div> </div>
+						<div class="contentList blogList2"><div>loading....</div> </div>
+						<div class="contentList blogList3"><div>loading....</div> </div>
+						<div class="contentList blogList4"><div>loading....</div> </div>
+						<div class="contentList blogList5"><div>loading....</div> </div>
+						<div class="contentList blogList6"><div>loading....</div> </div>
+						<div class="contentList blogList7"><div>loading....</div> </div>
+						<div class="contentList blogList8"><div>loading....</div> </div>
+						<div id="pageButton">
+							<div id="buttonContainer">
+								<div class="pageButtonInstence pagebutton1">上一页</div>
+								<div class="pageButtonInstence pagebutton2">下一页</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="blogDetails">
+						<div class="blogNavigationBar">
+							<div class="blogNavigationBarLeft"><span id="backButton">返回</span> </div>
+							<div class="blogNavigationBarRight"></div>
+						</div>
+						<div id="headerOnContent">
+							<div id="articleHeader"></div>
+							<div id="authorMsgArea">
+							</div>
+						</div>
+
+						<div id="hrLine"></div>
+
+
+						<div class="blogContent" id="markDownArea">
+							<textarea id="hahahdh" style="display: none;">###Hello world!</textarea>
+						</div>
+
+						<div id="bottomOfContent"></div>
+
+						<div id="writeArea">
+							<div id="contentsTheWriterAndButton">
+								<div id="contentsTheWrite">
+									<textarea id="write" maxlength="1000" placeholder="登录之后可以进行评论"></textarea>
+								</div>
+								<div id="contentsTheUpCommentButton">
+									<div id="underCommentMsg" onclick="commentChange()"></div>
+									<input type="button" id="upcomment" class="btn btn-primary" value="提交" />
+								</div>
+							</div>
+						</div>
+						<div id="commentArea">
+							<div id="commentInstence"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /内容区域中的右侧栏目-->
+		</div>
+		<!-- /内容区域-->
+
+
+		<div id="copyrightArea">
+			<div id="copyrightInstance">
+				Copyright©2019-2020 | design_by:盛世繁花 | 版权所有 <br>
+				<a id="beianhao" target="_blank" href="http://beian.miit.gov.cn">豫ICP备2020027622号</a>
+			</div>
+		</div>
+		<!-- 右侧fixed布局div，始终悬浮在右下方-->
+		<div class="right"></div>
+		<!-- /右侧fixed布局div，始终悬浮在右下方-->
+
+		<!-- 引入editor.md的js文件 -->
+		<script src="editor/lib/marked.min.js"></script>
+		<script src="editor/lib/prettify.min.js"></script>
+		<script src="editor/lib/raphael.min.js"></script>
+		<script src="editor/lib/underscore.min.js"></script>
+		<script src="editor/lib/sequence-diagram.min.js"></script>
+		<script src="editor/lib/flowchart.min.js"></script>
+		<script src="editor/lib/jquery.flowchart.min.js"></script>
+		<script src="editor/editormd.min.js"></script>
+
+		<!-- 合并js文件 -->
+		<script src="js/down-index.min.js"></script>
+		
+		<!-- 特效 -->
+		<script type="text/javascript" src="lib/js/ribbon.min.js"></script>
+	</body>
+</html>

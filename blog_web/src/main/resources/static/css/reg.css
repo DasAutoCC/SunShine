@@ -1,0 +1,155 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	width: 100%;
+	min-width: 980px;
+	height: 100%;
+}
+body{
+	background-image: url(../img/email-pattern.png);
+}
+#contentArea{
+	width: 800px;
+	height: 99%;
+	margin: 0 auto;
+	padding: 1px;
+}
+#headerArea{
+	height: 68px;
+	margin-top: 120px;
+	text-align: center;
+	font-size: 48px;
+}
+#loginArea{
+	height: 500px;
+	width: 420px;
+	/* background-color: #000088; */
+	margin: 0 auto;
+	padding: 1px;
+	margin-top: 20px;
+	border: blueviolet 2px solid;
+	border-radius: 8px;
+}
+#userNameAlert{
+	height: 20px;
+}
+#passwordAlert{
+	height: 20px;
+}
+#emailAlert{
+	height: 20px;
+	margin-top: 4px;
+}
+#verifAlert{
+	height: 20px;
+}
+#noName1{
+	height: 20px;
+}
+.alertArea{
+	margin-left: 20px;
+	font-size: 14px;
+	font-weight: 800;
+	color: grey;
+}
+
+.inputArea{
+	width: 380px;
+	height: 42px;
+	text-align: center;
+	font-size: 18px;
+	margin: 0 auto;
+	border-radius: 8px;
+	border: 2px solid blueviolet;
+	background-color: #FFFFFF;
+}	
+.inputInstance{
+	width: 360px;
+	height: 38px;
+	font-size: 28px;
+	line-height: 28px;
+	margin: 0 auto;
+	margin-top: 2px;
+	outline: none;
+	border: none;
+	background: none;
+}
+#mailInputAreaOut{
+	border: none;
+}
+#emailInputArea{
+	width: 280px;
+	float: left;
+}
+#emailIns{
+	width:270px;
+	height: 38px;
+	float: left;
+	margin-left: 9px;
+}
+#sendMail{
+	width: 90px;
+	height: 44px;
+	border: 2px skyblue solid;
+	border-radius: 8px;
+	background-color: skyblue;
+	font-size: 16px;
+	line-height: 16px;
+	cursor: pointer;
+	outline: none;
+	transition: 0.8s;
+}
+#sendMail:hover{
+	background-color: blueviolet;
+	border: 2px blueviolet solid;
+}
+
+#otherThing{
+	width: 360px;
+	height: 38px;
+	/* background-color: #007777; */
+	
+}
+#verifCodeArea{
+	height: 50px;
+	width: 320px;
+	margin: 0 auto;
+	font-size: 28px;
+}
+#verifImg:hover{
+	cursor: pointer;
+}
+#verifText{
+	float: left;
+	margin-top: 4px;
+}
+#verifTextInstence{
+	width: 360px;
+	height: 42px;
+	font-size: 28px;
+	outline: none;
+	border: none;
+	line-height: 16px;
+}
+#sexCheck{
+	width: 360px;
+	height: 38px;
+	border: none;
+	outline: none;
+	font-size: 28px;
+	line-height: 28px;
+	margin-top: 1px;
+}
+#formSubmit{
+	display: block;
+	width: 360px;
+	height: 42px;
+	margin: 0 auto;
+	font-size: 28px;
+}
+#formSubmit:hover{
+	cursor: pointer;
+}
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lkz.blog.web.mapper.AuthenticationMapper" >
+  <resultMap id="BaseResultMap" type="com.lkz.blog.pojo.Authentication" >
+    <id column="authentication_id" property="authenticationId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="authentications_id" property="authenticationsId" jdbcType="INTEGER" />
+    <result column="authentication_content" property="authenticationContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    authentication_id, user_id, authentications_id, authentication_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog_authentication
+    where authentication_id = #{authenticationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_authentication
+    where authentication_id = #{authenticationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lkz.blog.pojo.Authentication" >
+    insert into blog_authentication (authentication_id, user_id, authentications_id, 
+      authentication_content)
+    values (default , #{userId,jdbcType=BIGINT}, #{authenticationsId,jdbcType=INTEGER},
+      #{authenticationContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lkz.blog.pojo.Authentication" >
+    insert into blog_authentication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authenticationId != null" >
+        authentication_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="authenticationsId != null" >
+        authentications_id,
+      </if>
+      <if test="authenticationContent != null" >
+        authentication_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authenticationId != null" >
+        #{authenticationId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="authenticationsId != null" >
+        #{authenticationsId,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationContent != null" >
+        #{authenticationContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lkz.blog.pojo.Authentication" >
+    update blog_authentication
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="authenticationsId != null" >
+        authentications_id = #{authenticationsId,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationContent != null" >
+        authentication_content = #{authenticationContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where authentication_id = #{authenticationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lkz.blog.pojo.Authentication" >
+    update blog_authentication
+    set user_id = #{userId,jdbcType=BIGINT},
+      authentications_id = #{authenticationsId,jdbcType=INTEGER},
+      authentication_content = #{authenticationContent,jdbcType=VARCHAR}
+    where authentication_id = #{authenticationId,jdbcType=INTEGER}
+  </update>
+</mapper>

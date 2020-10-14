@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lkz.blog.web.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.lkz.blog.pojo.Article" >
+    <id column="article_id" property="articleId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="article_header" property="articleHeader" jdbcType="VARCHAR" />
+    <result column="hava_comment" property="havaComment" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="is_public" property="isPublic" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lkz.blog.pojo.Article" extends="BaseResultMap" >
+    <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <resultMap id="BlogResultMap" type="com.lkz.blog.pojo.Article" >
+    <id column="article_id" property="articleId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="article_header" property="articleHeader" jdbcType="VARCHAR" />
+    <result column="hava_comment" property="havaComment" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="is_public" property="isPublic" jdbcType="TINYINT" />
+    <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
+    <result column="preview" property="preview" jdbcType="VARCHAR" />
+    <result column="top_level" property="topLevel"></result>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    article_id, blog_article.user_id, article_header, hava_comment, create_time, update_time, blog_article.is_delete,
+    is_public, preview, top_level
+  </sql>
+  <sql id="Blob_Column_List" >
+    article_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_article
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from blog_article
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lkz.blog.pojo.Article" >
+    insert into blog_article (article_id, user_id, article_header, 
+      hava_comment, create_time, update_time, 
+      is_delete, is_public, article_content ,preview
+      )
+    values (default , #{userId,jdbcType=BIGINT}, #{articleHeader,jdbcType=VARCHAR},
+      #{havaComment,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=TINYINT}, #{isPublic,jdbcType=TINYINT}, #{articleContent,jdbcType=LONGVARCHAR},
+      #{preview}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lkz.blog.pojo.Article" >
+    insert into blog_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        article_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="articleHeader != null" >
+        article_header,
+      </if>
+      <if test="havaComment != null" >
+        hava_comment,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="isPublic != null" >
+        is_public,
+      </if>
+      <if test="articleContent != null" >
+        article_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        #{articleId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="articleHeader != null" >
+        #{articleHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="havaComment != null" >
+        #{havaComment,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isPublic != null" >
+        #{isPublic,jdbcType=TINYINT},
+      </if>
+      <if test="articleContent != null" >
+        #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lkz.blog.pojo.Article" >
+    update blog_article
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="articleHeader != null" >
+        article_header = #{articleHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="havaComment != null" >
+        hava_comment = #{havaComment,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isPublic != null" >
+        is_public = #{isPublic,jdbcType=TINYINT},
+      </if>
+      <if test="articleContent != null" >
+        article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="topLevel != null" >
+        top_level = #{topLevel},
+      </if>
+      <if test="preview != null" >
+        preview = #{preview},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lkz.blog.pojo.Article" >
+    update blog_article
+    set user_id = #{userId,jdbcType=BIGINT},
+      article_header = #{articleHeader,jdbcType=VARCHAR},
+      hava_comment = #{havaComment,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      is_public = #{isPublic,jdbcType=TINYINT},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lkz.blog.pojo.Article" >
+    update blog_article
+    set user_id = #{userId,jdbcType=BIGINT},
+      article_header = #{articleHeader,jdbcType=VARCHAR},
+      hava_comment = #{havaComment,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      is_public = #{isPublic,jdbcType=TINYINT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getAllBlogHeader" resultMap="BaseResultMap" parameterType="int">
+    select article_id,article_header from blog_article left join blog_user on blog_user.user_id = blog_article.user_id
+    where
+    (blog_article.is_public =1
+    <if test="isAuth==0">
+      or blog_article.is_public =0
+    </if>
+    ) and blog_user.user_id = 1 and blog_article.is_delete = 0;
+  </select>
+  
+  <select id="getBlogPreview" resultMap="BlogResultMap" parameterType="int">
+        select <include refid="Base_Column_List"></include>
+        from blog_article left join blog_user on blog_user.user_id = blog_article.user_id
+        where
+        blog_article.is_public = 1
+        <if test="auth == 0">
+        or blog_article.is_public = 0
+        </if>
+        and blog_user.user_id = 1 and blog_article.is_delete = 0
+        order by top_level desc , is_public, create_time desc
+        limit #{from},#{numbers};
+  </select>
+
+  <select id="getSpecifiedCategoryArticleHeader" resultMap="BlogResultMap" >
+    select article_id,article_header,category_id from blog_article left join blog_user on blog_user.user_id = blog_article.user_id
+    where
+    (blog_article.is_public =1
+    <if test="isAuth==0">
+      or blog_article.is_public =0
+    </if>
+    ) and blog_user.user_id = 1 and blog_article.is_delete = 0 and category_id = #{categoryId};
+  </select>
+
+
+</mapper>
