@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<script src="lib/js/jquery.main.js"></script>
+		<link rel="stylesheet" href="css/reg.css" />
+	</head>
+	<body>
+		<div id="contentArea">
+			<div id="headerArea">注册</div>
+			
+			<div id="loginArea">
+				
+				
+				<form method="post">
+					<div id="noName1"></div>
+					<div class="inputArea">
+						<input class="inputInstance" id="usernameIns" placeholder="Username" type="text" name="username" />
+					</div>
+					<div id="userNameAlert" class="alertArea"></div>
+					<div class="inputArea">
+						<input class="inputInstance" id="passwordIns" placeholder="Password" type="password" name="password" />
+					</div>
+					<div id="passwordAlert" class="alertArea"></div>
+					<div class="inputArea" id="mailInputAreaOut">
+						<div class="inputArea" id="emailInputArea">
+							<input class="inputInstance" id="emailIns" placeholder="email" type="text" name="email" />
+						</div>
+						<input id="sendMail" type="button" value="发送验证码" />
+					</div>
+					<div id="emailAlert" class="alertArea"></div>
+					
+					<div class="inputArea">
+						<input id="verifTextInstence" type="text" name="verfiCode" placeholder="验证码" />
+					</div>
+					<div id="verifAlert" class="alertArea"></div>
+					<div class="inputArea">
+						<select id="sexCheck">
+							<option value="true">男</option>
+							<option value="false">女</option>
+						</select>
+					</div>
+					<div id="otherThing">
+					</div>
+					<input  id="formSubmit" type="button" value="submit"  />
+				</form>
+				<div id="alertArea"></div>
+			</div>
+		</div>
+		<script src="js/reg.js"></script>
+	</body>
+</html>

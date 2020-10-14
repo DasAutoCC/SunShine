@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="blog_pojo" />
+        <module name="public_service" />
+        <module name="blog_web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="blog_parent" target="1.8" />
+      <module name="blog_pojo" target="1.8" />
+      <module name="blog_web" target="1.8" />
+      <module name="public_service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="blog_pojo" options="-parameters" />
+      <module name="blog_web" options="-parameters" />
+      <module name="public_service" options="-parameters" />
+    </option>
+  </component>
+</project>

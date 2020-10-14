@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<script src="/lib/js/jquery.main.js"></script>
+		<link rel="stylesheet" href="/css/login.css" />
+	</head>
+	<body>
+		<div id="contentArea">
+			<div id="headerArea">登录</div>
+			<div style="text-align: center" th:text="${errorMsg}" ></div>
+			<div id="loginArea">
+				
+				
+				<form method="post" action="/login">
+					<div class="inputArea">
+						<input class="inputInstance" placeholder="Username" type="text" name="username" />
+					</div>
+					<div class="inputArea">
+						<input class="inputInstance" placeholder="Password" type="password" name="password" />
+					</div>
+					<div id="otherThing">
+						<div id="rememberMe">
+							<label><input id="checked" type="checkbox" name="remember-me" checked="checked"/><span id="rememberFontInstance">&nbsp;RememberMe</span>  </label>
+						</div>
+						<div id="verifCodeArea">
+							<div id="noId"> <a id="noIdInstance" href="/reg.html">没有账号？注册一个</a> </div>
+						</div>
+					</div>
+					<input id="formSubmit" type="submit" value="login" />
+				</form>
+				
+				
+			</div>
+		</div>
+		
+		<script>
+			
+			
+			
+		</script>
+		
+	</body>
+</html>
